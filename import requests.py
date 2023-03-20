@@ -7,6 +7,14 @@ api_endpoints = [
     "https://api.example.com/endpoint3"
 ]
 
+# Replace with your authentication cookie value
+auth_cookie = "your_auth_cookie_value"
+
+# Prepare the headers with the authentication cookie
+headers = {
+    "Cookie": f"auth_cookie_name={auth_cookie}"
+}
+
 # Function to extract the first name from the JSON response
 def extract_first_name(json_response):
     try:
@@ -16,7 +24,7 @@ def extract_first_name(json_response):
 
 # Iterate through the list of API endpoints and make a REST call for each item
 for url in api_endpoints:
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
 
     # Check if the response status code is 200 (OK)
     if response.status_code == 200:
